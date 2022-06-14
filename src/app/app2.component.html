@@ -1,0 +1,90 @@
+<h1 class="h1-item-gubun">사용자 정의 어트리뷰트 디렉티브의 생성</h1>
+<p textBlue>textBlue directive</p>
+<br /><br />
+
+<!-- <p textColor [color]="color">Text Color</p> -->
+<p [textColor]="color">Text Color</p>
+
+<h1 class="h1-item-gubun">이벤트 처리</h1>
+<button myDirective [inputValue]="msg" staticValue="hi!">Click me</button>
+
+<h1 class="h1-item-gubun">@Input 데이터 바인딩</h1>
+<h4>텍스트 컬러 선택</h4>
+<div>
+    <input type="radio" name="colors" (click)="color='red'">Red
+    <input type="radio" name="colors" (click)="color='blue'">Blue
+    <input type="radio" name="colors" (click)="color='green'">Green
+</div>
+<p [textColor]="color" defaultColor="violet">Text Color</p>
+
+<h1 class="h1-item-gubun">사용자 정의 구조 디렉티브의 생성 | TemplateRef/ViewContainerRef</h1>
+<h2 *myNgIf="condition">Hello {{ name }}</h2>
+<button (click)="condition = !condition">Click</button>
+
+<ng-container *ngIf="isShow">
+    <ng-container *ngFor="let item of items">
+        <span class="span-mg-left-10">{{ item }}</span>
+    </ng-container>
+</ng-container>
+<button (click)="isShow=!isShow">
+    {{ isShow ? 'hide' : 'show' }}
+</button>
+
+<h1 class="h1-item-gubun">파이프-1</h1>
+<p>{{ today }}</p>
+<p>{{ today | date }}</p>
+<p>{{ today | date: 'y년 MM월 dd일 HH시 mm분 ss초' }}</p>
+<p>{{ name | uppercase }}</p>
+
+<h1 class="h1-item-gubun">빌트인 파이프</h1>
+<h3>DatePipe</h3>
+<p>{{ today | date:'y년 MM월 dd일 HH시 mm분 ss초' }}</p>
+
+<h3>CurrencyPipe</h3>
+<p>{{ price | currency:'KRW':'symbol':'1.1-2' }}</p>
+
+<h3>SlicePipe : array</h3>
+<ul>
+    <li *ngFor="let i of collection | slice:1:3">{{i}}</li>
+    <br/>
+    <li *ngFor="let i of collection">{{i}}</li>
+</ul>
+
+<h3>SlicePipe : string</h3>
+<p>{{ str | slice:0:4 }}</p>
+<p>{{ str | slice:1:4 }}</p>
+
+<h3>JsonPipe</h3>
+<p>{{ object | json }}</p>
+
+<h3>DecimalPipe</h3>
+<p>{{ pi | number:'3.5'}}</p>
+
+<h3>PercentPipe</h3>
+<p>{{ num | percent:'3.3' }}</p>
+
+<h3>Upper & Lower CasePipe</h3>
+<p>{{ str | uppercase }}</p>
+<p>{{ str | lowercase }}</p>
+
+<h3>AsyncPipe</h3>
+<p>{{ second$ | async }}</p>
+
+<h1 class="h1-item-gubun">체이닝 파이프</h1>
+<p>{{ name | slice:4 | uppercase }}</p>
+
+<h1 class="h1-item-gubun">커스텀 파이프</h1>
+<p>{{ name | reverse }}</p>
+
+<h1 class="h1-item-gubun">파이프와 변환 감지</h1>
+<app-todos></app-todos>
+
+<h1 class="h1-item-gubun">컴포넌트 생명주기 훅 메소드</h1>
+<button (click)="status = !status">
+    {{ status ? 'Destroy Child' : 'Create Child' }}
+</button>
+<div *ngIf="status">
+    <button (click)="immutable='HELLO'">기본자료형 프로퍼티 변경</button>
+    <button (click)="mutable.name='kim'">객체형 프로퍼티 변경</button>
+</div>
+<app-lifecycle-hook *ngIf="status" [prop]="prop" [immutable]="immutable" [mutable]="mutable"></app-lifecycle-hook>

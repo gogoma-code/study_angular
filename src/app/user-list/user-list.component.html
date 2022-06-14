@@ -1,0 +1,29 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users; let i=index">
+            <td>{{ i }}</td>
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.role }}</td>
+            <td>
+                <button class="btn btn-danger btn-sm" (click)="removeUser.emit(user)">X</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <p>Admin: {{ cntAdmin }}</p>
+        <p>Developer: {{ cntDeveloper }}</p>
+        <p>Designer: {{ cntDesigner }}</p>
+    </div>
+</div>

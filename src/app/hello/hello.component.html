@@ -1,3 +1,77 @@
-<h2>안녕 {{name}}</h2>
-<input type="'text" placeholder="이름 입력" #inputYourName />
-<button (click)="setName(inputYourName.value)">등록</button>
+<div>
+    Width: <input type="'text" [(ngModel)]="width">
+    <button (click)="increaseWidth()">+</button>
+    <button (click)="decreaseWidth()">-</button>
+</div>
+<div>
+    Height: <input type="text" [(ngModel)]="height">
+    <button (click)="increaseHeight()">+</button>
+    <button (click)="decreaseHeight()">-</button>
+</div>
+<br />
+<button (click)="isShow=!isShow">{{ isShow ? 'Hide' : 'Show' }}</button>
+
+<div [ngStyle]="{
+    'width.px': width,
+    'height.px': height,
+    'background-color': bgColor,
+    'visibility': isShow ? 'visible' : 'hidden',
+    'margin-top': '10px'
+}">
+</div>
+
+<p *ngIf="isShow">Lorem ipsum dolor sit amet</p>
+
+<p [style.display]="isShow ? 'block' : 'none'">Lorem ipsum dolor sit amet</p>
+
+
+<!-- START CONTENT : ngIf & ng-template -->
+<div>
+    <input type="radio" id="one" name="skill" [(ngModel)]="mySkill" value="HTML">
+    <label for="one"> HTML</label>
+    <input type="radio" id="two" name="skill" [(ngModel)]="mySkill" value="CSS">
+    <label for="two"> CSS</label>
+</div>
+
+<!-- 참인 경우, 별도의 ng-template을 사용하지 않는 방법  -->
+<div *ngIf="mySkill==='HTML'; else elseBlock">HTML</div>
+<ng-template #elseBlock>
+    <div>CSS</div>
+</ng-template>
+
+<!-- 참인 경우, 별도의 ng-template을 사용하는 방법  -->
+<div *ngIf="mySkill==='HTML'; then thenBlock_1 else elseBlock_1"></div>
+<ng-template #thenBlock_1>
+    <div>HTML</div>
+</ng-template>
+<ng-template #elseBlock_1>
+    <div>CSS</div>
+</ng-template>
+<br/>
+<!-- END CONTENT : ngIf & ng-template -->
+
+
+<!-- START CONTENT : ngFor & trackBy -->
+<input type="text" placeholder="이름을 입력하세요" #name />
+<button (click)="addUser(name.value)">add user</button>
+
+<ul>
+    <li *ngFor="let user of users; let i=index; trackBy: trackByhUserId">
+        {{ i }}: {{ user.name }}
+        <button (click)="removeUser(user.id)">remove user</button>
+    </li>
+</ul>
+<pre>{{ users | json }}</pre>
+<br/>
+<!-- End CONTENT : ngFor & trackBy -->
+
+<!-- START CONTENT : ngSwitch -->
+<input type="text" [(ngModel)]="num" placeholder="숫자를 입력하세요" />
+<div [ngSwitch]="num">
+    <div *ngSwitchCase="'1'">One</div>
+    <div *ngSwitchCase="'2'">Two</div>
+    <div *ngSwitchCase="'3'">Three</div>
+    <div *ngSwitchCase="'4'">Four</div>
+    <div *ngSwitchDefault>This is Default</div>
+</div>
+<!-- End CONTENT : ngSwitch -->

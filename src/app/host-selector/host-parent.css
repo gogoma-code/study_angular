@@ -1,0 +1,15 @@
+/* 호스트 요소 <app-root>에 대해 적용된다 */
+:host {
+  display: block;
+  background-color: lightgray;
+  border: 1px solid dimgray;
+  padding: 20px;
+}
+h3 {
+  color: dimgray;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}

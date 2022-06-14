@@ -29,5 +29,7 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true
     // "strictPropertyInitialization": false
+    // "strictDomEventTypes": false
+    
   }
 }

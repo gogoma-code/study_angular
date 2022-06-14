@@ -12,7 +12,7 @@ input[type=text] {
     box-sizing: border-box;
 }
 button {
-    height: 25px;
+    height: 40px;
     width: 50px;
     margin-left: 10px;
     background-color: #fff;
@@ -26,4 +26,7 @@ button {
 button:hover {
     background-color: #e6e6e6;
     border-color: #adadad;
+}
+p {
+    background-color: #CDDC39;
 }

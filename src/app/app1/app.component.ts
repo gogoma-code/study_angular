@@ -1,8 +1,8 @@
 import { Component, ViewChild, ViewChildren, QueryList, ElementRef } from '@angular/core';
-import { User } from './models/user.model';
-import { CounterComponent } from './counter/counter.component';
-import { ChildComponent } from './child/child.component';
-import { ChildrenComponent } from './child/children.component';
+import { User } from '../models/user.model';
+import { CounterComponent } from '../counter/counter.component';
+import { ChildComponent } from '../child/child.component';
+import { ChildrenComponent } from '../child/children.component';
 
 export interface Checkbox { 
   id: number; 

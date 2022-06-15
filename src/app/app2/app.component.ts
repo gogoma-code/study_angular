@@ -3,7 +3,7 @@ import { interval, take } from 'rxjs';
 
 @Component({
     selector: 'app-root',
-    templateUrl: './app2.component.html',
+    templateUrl: './app.component.html',
     styles: [`
         h1.h1-item-gubun { font-style: bold; background-color: gray; margin-top: 30px; }
         .span-mg-left-10 { margin-left: 10px; }

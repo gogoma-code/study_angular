@@ -12,11 +12,14 @@ import { CastObservableComponent } from '../RxJS/cast.component';
 import { OperatorObservableComponent } from '../RxJS/operator.component';
 import { ObservableEventHttpComponent } from '../RxJS/event-http-component';
 
+import { HttpClientGetComponent } from '../http/httpclient-get.component';
+
 @NgModule({
     declarations: [
         AppComponent,
         ObservableComponent, Observable2Component, ColdObservableComponent, HotObservableComponent, 
-        CastObservableComponent, OperatorObservableComponent, ObservableEventHttpComponent, ObservableEventHttpComponent
+        CastObservableComponent, OperatorObservableComponent, ObservableEventHttpComponent, ObservableEventHttpComponent,
+        HttpClientGetComponent
     ],
     imports: [
         BrowserModule,

@@ -37,7 +37,7 @@ export class HttpClientGetComponent implements OnInit {
                         .set('completed', 'false');
 
     // HTTP GET 요청
-    this.http.get<Todo[]>(this.url, { params })
+    this.http.get<Todo[]>(this.url)
     // this.http.get<Todo[]>('/textfile.txt', { responseType: 'text' }')
       /* 요청 결과를 프로퍼티에 할당한다.
          get 메소드는 Observable<Object>를 반환한다.

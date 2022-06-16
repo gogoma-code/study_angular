@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
+import { tap, throwError, catchError } from 'rxjs';
 
 interface Todo {
   id: number;
   content: string;
   completed: boolean;
+}
+
+interface ErrorMessage {
+  title: string; 
+  message: string;
 }
 
 @Component({
@@ -14,14 +20,15 @@ interface Todo {
       <li *ngFor="let todo of todos">{{ todo.content }}</li>
     </ul>
     <pre>{{ todos | json }}</pre>
+    
+    <h3 class='title'>{{error}}</h3>
+    <p class='message'>{{error}}</p>
   `
 })
 export class HttpClientGetComponent implements OnInit {
   todos: Todo[];
-  // url = 'http://localhost:3000/todos';
-  /* NOTE:
-    stackblitz.com에서는 json-server를 실행할 수 없기 때문에 
-    now를 사용하여 json-server를 호스팅하였다. */
+  error: ErrorMessage;
+
   url = 'http://localhost:3000/todos';
 
   // HttpClient를 컴포넌트에 주입
@@ -36,18 +43,34 @@ export class HttpClientGetComponent implements OnInit {
                         .set('id', 3)
                         .set('completed', 'false');
 
-    // HTTP GET 요청
-    this.http.get<Todo[]>(this.url)
-    // this.http.get<Todo[]>('/textfile.txt', { responseType: 'text' }')
-      /* 요청 결과를 프로퍼티에 할당한다.
-         get 메소드는 Observable<Object>를 반환한다.
-         이때 타입이 일치하지 않기 때문에 컴파일 에러가 발생한다. */
+    // HTTP GET 요청, response
+    this.http.get<Todo[]>(this.url, { observe: 'response' })
+      .pipe(
+        catchError(this.handleError),
+        tap((res) => console.log(res)),
+        tap((res) => console.log(res.headers)),
+        tap((res) => console.log(res.status)),
+      )
       .subscribe({
-        next: todos => { this.todos = todos; console.log(this.todos); },
-        error: err => console.error(err)
+        next: res => { this.todos = res.body; },
+        error: (error: ErrorMessage) => {this.error = error;}
       });
-      /* NOTE: 
-        stackblitz.com에서는 에러가 발생하지 않지만 
-        Angular CLI를 통해 생성한 프로젝트에서는 에러가 발생한다. */
   }
+
+  // 에러 핸들러 함수
+  private handleError(error: HttpErrorResponse) {
+    let message = '';
+    if (error.error instanceof ErrorEvent) {
+      // 클라이언트 측의 에러
+      console.error(`Client-side error: ${error.error.message}`);
+      message = `Client-side error: ${error.error.message}`
+    } else {
+      // 백엔트 측의 에러
+      console.error(`Server-side error: ${error.status}`);
+      message = `Server-side error: ${error.status}`;
+    }
+
+    // 사용자에게 전달할 메세지를 담은 옵저버블 반환
+    return throwError(() => new Error(message));
+  }   
 }

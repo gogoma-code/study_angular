@@ -1,7 +1,34 @@
 {
-    "todos": [
-        { "id": 1, "content": "HTML", "completed": false },
-        { "id": 2, "content": "CSS", "completed": true },
-        { "id": 3, "content": "JavaScript", "completed": false }
-    ]
+  "todos": [
+    {
+      "id": 1,
+      "content": "HTML",
+      "completed": false
+    },
+    {
+      "id": 2,
+      "content": "CSS",
+      "completed": true
+    },
+    {
+      "id": 3,
+      "content": "JavaScript",
+      "completed": false
+    },
+    {
+      "content": "HTML",
+      "completed": false,
+      "id": 4
+    },
+    {
+      "content": "NodeJS",
+      "completed": false,
+      "id": 5
+    },
+    {
+      "content": "AngularJS",
+      "completed": false,
+      "id": 6
+    }
+  ]
 }

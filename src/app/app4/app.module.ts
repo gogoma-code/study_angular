@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; // FormsModule 임포트
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ObservableComponent } from '../RxJS/observable.component'
@@ -13,15 +13,16 @@ import { CastObservableComponent } from '../RxJS/cast.component';
 import { OperatorObservableComponent } from '../RxJS/operator.component';
 import { ObservableEventHttpComponent } from '../RxJS/event-http-component';
 
-import { HttpClientGetComponent } from '../http/httpclient-get.component';
-import { HttpClientPostComponent } from '../http/httpclient-post.component';
+import { HttpClientComponent } from '../http/httpclient.component';
+
+import { AuthInterceptor } from '../services/auth-interceptor.service';
 
 @NgModule({
     declarations: [
         AppComponent,
         ObservableComponent, Observable2Component, ColdObservableComponent, HotObservableComponent, 
         CastObservableComponent, OperatorObservableComponent, ObservableEventHttpComponent, ObservableEventHttpComponent,
-        HttpClientGetComponent, HttpClientPostComponent
+        HttpClientComponent
     ],
     imports: [
         BrowserModule,
@@ -30,6 +31,7 @@ import { HttpClientPostComponent } from '../http/httpclient-post.component';
         FormsModule,
     ],
     providers: [ 
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
     ], 
     bootstrap: [AppComponent]
 })

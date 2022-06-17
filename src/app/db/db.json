@@ -3,7 +3,7 @@
     {
       "id": 1,
       "content": "HTML",
-      "completed": false
+      "completed": true
     },
     {
       "id": 2,
@@ -13,22 +13,22 @@
     {
       "id": 3,
       "content": "JavaScript",
-      "completed": false
+      "completed": true
     },
     {
-      "content": "HTML",
-      "completed": false,
-      "id": 4
-    },
-    {
-      "content": "NodeJS",
+      "content": "Angular",
       "completed": false,
       "id": 5
     },
     {
       "content": "AngularJS",
-      "completed": false,
+      "completed": true,
       "id": 6
+    },
+    {
+      "content": "mysql",
+      "completed": true,
+      "id": 8
     }
   ]
 }

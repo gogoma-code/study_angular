@@ -27,7 +27,7 @@
     },
     {
       "content": "mysql",
-      "completed": true,
+      "completed": false,
       "id": 8
     }
   ]

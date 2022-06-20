@@ -1,0 +1,29 @@
+<h1 class="h1-item-gubun">router 기본</h1>
+<nav>
+    <a routerLink="/home" 
+      routerLinkActive="active" 
+      [routerLinkActiveOptions]="{ exact: true }">
+      Home</a>
+    <a routerLink="/service" 
+      routerLinkActive="active" 
+      [routerLinkActiveOptions]="{ exact: true }">
+      Service</a>
+    <a routerLink="/about" 
+      routerLinkActive="active" 
+      [routerLinkActiveOptions]="{ exact: true }">
+      About</a>
+    <a routerLink="/user" 
+      routerLinkActive="active" 
+      [routerLinkActiveOptions]="{ exact: true }">
+      User</a>
+    <a routerLink="/customer" 
+      routerLinkActive="active" 
+      [routerLinkActiveOptions]="{ exact: true }">
+      Customer</a>
+  </nav>
+
+  <br/>
+  <button (click)="gotoTodos()">goto todos</button>
+  <br/>
+  
+<router-outlet></router-outlet>
